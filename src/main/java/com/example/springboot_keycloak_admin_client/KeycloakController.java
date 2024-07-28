@@ -15,4 +15,9 @@ public class KeycloakController {
         keycloakService.updatePasswordPolicy(policy);
         return "Password policy updated to: " + policy;
     }
+    
+    @GetMapping("/test")
+    public String test() {
+    	return "App is running....";
+    }
 }
