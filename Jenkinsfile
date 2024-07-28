@@ -32,7 +32,9 @@ pipeline {
                 script {
                     //def jarFile = findFiles(glob: 'target/*.jar')[0].path
                     //bat "copy ${jarFile} ${DEPLOY_DIR}\\${JAR_NAME}"
-                    bat "copy target/${JAR_NAME} ${DEPLOY_DIR}/${JAR_NAME}"
+                    //bat "copy target/${JAR_NAME} ${DEPLOY_DIR}/${JAR_NAME}"
+                    bat "cp target/springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar /home/your-username/Del/springboot/springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
+                    
                 }
             }
         }
