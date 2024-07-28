@@ -56,8 +56,7 @@ pipeline {
             steps {
                // Run the Spring Boot application with docker
                bat """
-               		pwd
-               		ls
+               		DIR
                     docker build --tag=springboot-keycloak-admin-client:latest .
                     docker run -p8090:8090 springboot-keycloak-admin-client:latest
                 """
