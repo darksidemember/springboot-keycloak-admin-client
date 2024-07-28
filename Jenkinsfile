@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define any environment variables here
         JAR_NAME = "springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
-        DEPLOY_DIR = "D:/Del/springboot"
+        DEPLOY_DIR = "D:/Del/springboot/"
     }
     
 	options {
