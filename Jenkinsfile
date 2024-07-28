@@ -30,7 +30,6 @@ pipeline {
             steps {
                 // Copy the generated JAR to the deploy directory
                 script {
-                    def jarFile = findFiles(glob: 'target/*.jar')[0].path
                     bat "copy ${jarFile} ${DEPLOY_DIR}\\${JAR_NAME}"
                 }
             }
