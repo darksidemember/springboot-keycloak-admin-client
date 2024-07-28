@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define any environment variables here
         JAR_NAME = "springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
-        DEPLOY_DIR = "D:/Del/springboot/"
+        DEPLOY_DIR = "D:/Del/springboot"
     }
     
 	options {
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     //def jarFile = findFiles(glob: 'target/*.jar')[0].path
                     //bat "copy ${jarFile} ${DEPLOY_DIR}\\${JAR_NAME}"
-                    bat "copy target/${JAR_NAME} ${DEPLOY_DIR}\\${JAR_NAME}"
+                    bat "copy target/${JAR_NAME} ${DEPLOY_DIR}/${JAR_NAME}"
                 }
             }
         }
