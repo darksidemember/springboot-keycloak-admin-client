@@ -50,7 +50,7 @@ pipeline {
                 
                bat """
                     set JAR_PATH=${DEPLOY_DIR}\\${JAR_NAME}
-                    start javaw -jar %JAR_PATH%
+                    java -jar %JAR_PATH%
                 """
             }
         }
