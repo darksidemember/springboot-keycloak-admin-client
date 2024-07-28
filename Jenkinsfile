@@ -6,6 +6,10 @@ pipeline {
         JAR_NAME = "springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
         DEPLOY_DIR = "D:/Del/springboot"
     }
+    
+	options {
+	  buildDiscarder(logRotator(numToKeepStr: '1', artifactNumToKeepStr: '5') 
+	}
 
     stages {
         stage('Checkout') {
