@@ -8,8 +8,13 @@ pipeline {
     }
     
 	options {
+	  //Keep console logs of 1 build only
 	  buildDiscarder(logRotator(numToKeepStr: '1', artifactNumToKeepStr: '5'))
 	}
+	
+	parameters {
+        booleanParam(name: 'docker_run', defaultValue: true, description: 'Set to true to run with docker')
+    }
 
     stages {
         stage('Checkout') {
@@ -30,27 +35,29 @@ pipeline {
             steps {
                 // Copy the generated JAR to the deploy directory
                 script {
-                    //def jarFile = findFiles(glob: 'target/*.jar')[0].path
-                    //bat "copy ${jarFile} ${DEPLOY_DIR}\\${JAR_NAME}"
-                    //bat "copy target/${JAR_NAME} ${DEPLOY_DIR}/${JAR_NAME}"
-                    
-                    //bat "copy target\\springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar D:\\Del\\springboot\\springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
                     bat "copy target\\${JAR_NAME} ${DEPLOY_DIR}\\${JAR_NAME}"
                 }
             }
         }
 
-        stage('Run') {
+        stage('Run JAR file') {
+        	when { expression { params.docker_run != true } }
             steps {
-                // Run the Spring Boot application
-                //bat """
-                    //set JAR_PATH=${DEPLOY_DIR}\\${JAR_NAME}
-                    //start javaw -jar %JAR_PATH%
-                //"""
-                
+               // Run the Spring Boot application as a jar file
                bat """
                     set JAR_PATH=${DEPLOY_DIR}\\${JAR_NAME}
                     java -jar %JAR_PATH%
+                """
+            }
+        }
+
+        stage('Run with docker') {
+        	when { expression { params.docker_run == true } }
+            steps {
+               // Run the Spring Boot application with docker
+               bat """
+                    docker build --tag=springboot-keycloak-admin-client:latest .
+                    docker run -p8090:8090 springboot-keycloak-admin-client:latest
                 """
             }
         }
