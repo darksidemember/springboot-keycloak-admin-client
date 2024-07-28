@@ -34,8 +34,8 @@ pipeline {
                     //bat "copy ${jarFile} ${DEPLOY_DIR}\\${JAR_NAME}"
                     //bat "copy target/${JAR_NAME} ${DEPLOY_DIR}/${JAR_NAME}"
                     
-                    bat "copy target\\springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar D:\\Del\\springboot\\springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
-                    
+                    //bat "copy target\\springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar D:\\Del\\springboot\\springboot-keycloak-admin-client-0.0.1-SNAPSHOT.jar"
+                    bat "copy target\\${JAR_NAME} ${DEPLOY_DIR}\\${JAR_NAME}"
                 }
             }
         }
